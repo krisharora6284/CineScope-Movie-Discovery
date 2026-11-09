@@ -1,0 +1,11 @@
+import { useEffect, useState } from 'react'
+
+// Wait briefly after typing before applying the search.
+export default function useDebounce(value, delay = 350) {
+  const [debouncedValue, setDebouncedValue] = useState(value)
+  useEffect(() => {
+    const timer = setTimeout(() => setDebouncedValue(value), delay)
+    return () => clearTimeout(timer)
+  }, [value, delay])
+  return debouncedValue
+}
